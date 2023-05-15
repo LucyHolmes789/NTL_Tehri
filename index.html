@@ -20,17 +20,6 @@
             maxZoom: 18,
         }).addTo(map);
 
-        var difference_Tehri = 'difference_Tehri.tif'; // Update with the correct path
-        var areas15km_india_NJ = 'areas15km_india_NJ.geojson'; // Update with the correct path
-
-        L.imageOverlay(difference_Tehri, [[30.35355, 78.33545], [30.35355, 78.33545]]).addTo(map);
-
-        L.geoJSON(areas15km_india_NJ, {
-            color: '#253494',
-            fillOpacity: 0,
-            weight: 3
-        }).addTo(map);
-
         L.control.html({
             position: 'bottomright',
             html: '<div style="background-color: rgba(255, 255, 255, 0.5); padding: 1px; font-family: Calibri">' +
@@ -51,7 +40,6 @@
         L.control.html({
             position: 'topright',
             html: '<div style="background-color: rgba(255, 255, 255, 0.5); padding: 1px; font-family: Calibri">' +
-                '<html: '<div style="background-color: rgba(255, 255, 255, 0.5); padding: 1px; font-family: Calibri">' +
                 '<div style="color: black; font-size: 15px; margin-bottom: 0px; text-align: left">' +
                 'Socio-economic activity <br> comparison before and <br> after Tehri construction' +
                 '</div>' +
@@ -60,4 +48,3 @@
     </script>
 </body>
 </html>
-
