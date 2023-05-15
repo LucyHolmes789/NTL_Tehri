@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello, World!</title>
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my GitHub Pages site.</p>
-</body>
-</html>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([30.35355, 78.33545], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18
+        }).addTo(map);
+
+        var difference_Tehri = 'path/to/difference_Tehri.tif';
+        var areas15km_india_NJ = 'path/to/areas15km_india_NJ.geojson';
+
+        L.imageOverlay(difference_Tehri, [[30.35355, 78.33545], [30.35355, 78.33545]], { opacity: 0.7 }).addTo(map);
+
+        L.geoJSON(areas15km_india_NJ, {
+            style: function (feature) {
+                return { color: '#253494', fillOpacity: 0, weight: 3 };
+            }
+        }).addTo(map);
+
+        L.control.custom({
+            position: 'bottomright',
+            content: '<div style="background-color: rgba(255, 255, 255, 0.5); padding: 1px; font-family: Calibri">' +
+                '<div style="display: flex; align-items: center; color: black; font-size: 20px;">' +
+                '<div style="display: flex; align-items: center; color: black; font-size: 15px; margin-left: 0px; margin-bottom: 5px;">more activity</div></div>' +
+                '<div style="display: flex; align-items: center; color: black; font-size: 20px;">' +
+                '<div style="width: 20px; height: 30px; background: linear-gradient(0deg, white, #31f7f6); margin-left: 30px;"></div></div>' +
+                '<div style="display: flex; align-items: center; color: black; font-size: 14px; margin-left: 5px; margin-top: 1px; margin-bottom: 1px; margin-left: 36px;">&#8595;   2006</div>' +
+                '<div style="display: flex; align-items: center; color: #31f7f6;">' +
+                '<div style="width: 20px; height: 30px; background: linear-gradient(0deg, #000000, grey); margin-left: 30px;"></div></div>' +
+                '<div style="display: flex; align-items: center; color: black; font-size: 15px; margin-left: 0px; margin-top: 5px;">less activity</div></div>'
+        }).addTo(map);
+
+        L.control.custom({
+            position: 'topright',
+            content: '<div style="background-color:
